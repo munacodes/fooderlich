@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:fooderlinch/components/card1.dart';
 import 'package:fooderlinch/components/card2.dart';
 import 'package:fooderlinch/components/card3.dart';
-import 'components/card1.dart';
-import 'components/card2.dart';
-import 'components/card3.dart';
+
+import 'models/explore_recipe.dart';
+import 'screens/explore_screens.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({super.key});
 
   @override
-  _HomeState createState() => _HomeState();
+  HomeState createState() => HomeState();
 }
 
-class _HomeState extends State<Home> {
+class HomeState extends State<Home> {
   int _selectedIndex = 0;
 
-  static List pages = [
-    const Card1(),
-    const Card2(),
-    const Card3(),
+  static List<Widget> pages = <Widget>[
+    ExploreScreen(),
+    Container(color: Colors.green),
+    Container(color: Colors.blue),
   ];
 
   void _onItemTapped(int index) {
@@ -36,26 +37,26 @@ class _HomeState extends State<Home> {
           style: Theme.of(context).textTheme.headline6,
         ),
       ),
+      body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
-        items: const [
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            label: 'Card',
+            icon: Icon(Icons.explore),
+            label: 'Explore',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            label: 'Card2',
+            icon: Icon(Icons.book),
+            label: 'Recipes',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            label: 'Card3',
+            icon: Icon(Icons.list),
+            label: 'To Buy',
           ),
         ],
       ),
-      body: pages[_selectedIndex],
     );
   }
 }

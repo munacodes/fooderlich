@@ -1,59 +1,61 @@
 import 'package:flutter/material.dart';
+
 import '../fooderlich_theme.dart';
+import '../models/models.dart';
 
 class Card1 extends StatelessWidget {
-  const Card1({Key? key}) : super(key: key);
+  final ExploreRecipe recipe;
 
-  final String catergory = 'Editor\'s Choice';
-  final String title = 'The Life of Bread';
-  final String description = 'Avoid those who don\'t like bread and children.';
-  final String chef = 'Munachim';
+  const Card1({
+    super.key,
+    required this.recipe,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         constraints: const BoxConstraints.expand(
-          width: 350.0,
-          height: 450.0,
+          width: 350,
+          height: 450,
         ),
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/mag1.png'),
+            image: AssetImage(recipe.backgroundImage),
             fit: BoxFit.cover,
           ),
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
         ),
         child: Stack(
           children: [
             Text(
-              catergory,
+              recipe.subtitle,
               style: FooderlichTheme.darkTextTheme.bodyText1,
             ),
             Positioned(
-              child: Text(
-                title,
-                style: FooderlichTheme.darkTextTheme.headline5,
-              ),
               top: 20,
+              child: Text(
+                recipe.title,
+                style: FooderlichTheme.darkTextTheme.headline2,
+              ),
             ),
             Positioned(
-              child: Text(
-                description,
-                style: FooderlichTheme.darkTextTheme.bodyText1,
-              ),
               bottom: 30,
               right: 0,
-            ),
-            Positioned(
               child: Text(
-                chef,
+                recipe.message,
                 style: FooderlichTheme.darkTextTheme.bodyText1,
               ),
+            ),
+            Positioned(
               bottom: 10,
               right: 0,
-            ),
+              child: Text(
+                recipe.authorName,
+                style: FooderlichTheme.darkTextTheme.bodyText1,
+              ),
+            )
           ],
         ),
       ),
