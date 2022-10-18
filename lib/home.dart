@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fooderlinch/components/card1.dart';
-import 'package:fooderlinch/components/card2.dart';
-import 'package:fooderlinch/components/card3.dart';
+import 'package:fooderlinch/screens/recipes_screen.dart';
 
-import 'models/explore_recipe.dart';
 import 'screens/explore_screens.dart';
 
 class Home extends StatefulWidget {
@@ -18,7 +15,7 @@ class HomeState extends State<Home> {
 
   static List<Widget> pages = <Widget>[
     ExploreScreen(),
-    Container(color: Colors.green),
+    RecipesScreen(),
     Container(color: Colors.blue),
   ];
 
