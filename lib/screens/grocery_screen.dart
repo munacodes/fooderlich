@@ -6,7 +6,7 @@ class GroceryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO 4: Add a Scaffold widget
+    // TODO 4: Add a Scaffold Widget
     return const EmptyGroceryScreen();
   }
 }
