@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fooderlinch/screens/recipes_screen.dart';
 
+import 'screens/recipes_screen.dart';
+import 'screens/grocery_screen.dart';
 import 'screens/explore_screens.dart';
 
 class Home extends StatefulWidget {
@@ -16,7 +17,7 @@ class HomeState extends State<Home> {
   static List<Widget> pages = <Widget>[
     ExploreScreen(),
     RecipesScreen(),
-    Container(color: Colors.blue),
+    const GroceryScreen(),
   ];
 
   void _onItemTapped(int index) {
