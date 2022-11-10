@@ -79,10 +79,8 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
                   ),
                 );
                 if (widget.isUpdating!) {
-                  // 2
                   widget.onUpdate!(groceryItem);
                 } else {
-                  // 3
                   widget.onCreate!(groceryItem);
                 }
               }),
