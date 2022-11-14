@@ -59,6 +59,7 @@ class GroceryTile extends StatelessWidget {
                   fontSize: 21.0,
                 ),
               ),
+              buildCheckbox(),
             ],
           ),
         ],
