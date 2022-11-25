@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
+import 'package:go_router/go_router.dart';
 import '../models/models.dart';
 
 class EmptyGroceryScreen extends StatelessWidget {
-  const EmptyGroceryScreen({Key? key}) : super(key: key);
+  const EmptyGroceryScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,14 +13,15 @@ class EmptyGroceryScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AspectRatio(
-              aspectRatio: 1 / 1,
-              child: Image.asset('assets/fooderlich_assets/empty_list.png'),
+            Flexible(
+              child: AspectRatio(
+                aspectRatio: 1 / 1,
+                child: Image.asset('assets/fooderlich_assets/empty_list.png'),
+              ),
             ),
-            const SizedBox(height: 8.0),
-            const Text(
+            Text(
               'No Groceries',
-              style: TextStyle(fontSize: 21.0),
+              style: Theme.of(context).textTheme.headline6,
             ),
             const SizedBox(height: 16.0),
             const Text(
@@ -30,14 +31,19 @@ class EmptyGroceryScreen extends StatelessWidget {
             ),
             MaterialButton(
               textColor: Colors.white,
-              child: const Text('Browse Recipes'),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30.0),
               ),
               color: Colors.green,
               onPressed: () {
-                Provider.of<TabManager>(context, listen: false).goToRecipes();
+                context.goNamed(
+                  'home',
+                  params: {
+                    'tab': '${FooderlichTab.recipes}',
+                  },
+                );
               },
+              child: const Text('Browse Recipes'),
             ),
           ],
         ),
