@@ -30,10 +30,11 @@ class FooderlichTheme {
     ),
   );
 
+  // 2
   static TextTheme darkTextTheme = TextTheme(
     bodyText1: GoogleFonts.openSans(
       fontSize: 14.0,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w700,
       color: Colors.white,
     ),
     headline1: GoogleFonts.openSans(
@@ -61,10 +62,23 @@ class FooderlichTheme {
   static ThemeData light() {
     return ThemeData(
       brightness: Brightness.light,
-      primaryColor: Colors.white,
-      primarySwatch: Colors.green,
-      textSelectionTheme: const TextSelectionThemeData(
-        selectionColor: Colors.green,
+      checkboxTheme: CheckboxThemeData(
+        fillColor: MaterialStateColor.resolveWith(
+          (states) {
+            return Colors.black;
+          },
+        ),
+      ),
+      appBarTheme: const AppBarTheme(
+        foregroundColor: Colors.black,
+        backgroundColor: Colors.white,
+      ),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.black,
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        selectedItemColor: Colors.green,
       ),
       textTheme: lightTextTheme,
     );
@@ -73,8 +87,17 @@ class FooderlichTheme {
   static ThemeData dark() {
     return ThemeData(
       brightness: Brightness.dark,
-      primaryColor: Colors.grey[900],
-      primarySwatch: Colors.green,
+      appBarTheme: AppBarTheme(
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.grey[900],
+      ),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.green,
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        selectedItemColor: Colors.green,
+      ),
       textTheme: darkTextTheme,
     );
   }

@@ -9,9 +9,8 @@ class GroceryTile extends StatelessWidget {
   final TextDecoration? textDecoration;
 
   GroceryTile({Key? key, this.item, this.onComplete})
-      : textDecoration = item!.isComplete!
-            ? TextDecoration.lineThrough
-            : TextDecoration.none,
+      : textDecoration =
+            item!.isComplete ? TextDecoration.lineThrough : TextDecoration.none,
         super(key: key);
 
   @override
@@ -35,7 +34,7 @@ class GroceryTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    item!.name!,
+                    item!.name,
                     style: GoogleFonts.lato(
                       decoration: textDecoration,
                       fontSize: 21.0,
@@ -53,7 +52,7 @@ class GroceryTile extends StatelessWidget {
           Row(
             children: [
               Text(
-                item!.quantity!.toString(),
+                item!.quantity.toString(),
                 style: GoogleFonts.lato(
                   decoration: textDecoration,
                   fontSize: 21.0,
@@ -95,7 +94,7 @@ class GroceryTile extends StatelessWidget {
 
   Widget buildDate() {
     final dateFormatter = DateFormat('MMMM dd h:mm a');
-    final dateString = dateFormatter.format(item!.date!);
+    final dateString = dateFormatter.format(item!.date);
     return Text(
       dateString,
       style: TextStyle(decoration: textDecoration),

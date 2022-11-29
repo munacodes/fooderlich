@@ -21,7 +21,7 @@ class GroceryListScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           final item = groceryItems[index];
           return Dismissible(
-            key: Key(item.id!),
+            key: Key(item.id),
             direction: DismissDirection.endToStart,
             background: Container(
               color: Colors.red,
@@ -42,7 +42,7 @@ class GroceryListScreen extends StatelessWidget {
             },
             child: InkWell(
               child: GroceryTile(
-                key: Key(item.id!),
+                key: Key(item.id),
                 item: item,
                 onComplete: (change) {
                   if (change != null) {
