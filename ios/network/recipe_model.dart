@@ -28,7 +28,46 @@ class APIRecipeQuery {
   });
 }
 
-// TODO: Add @JsonSerializable() class APIHits
-// TODO: Add @JsonSerializable() class APIRecipe
+// Adds @JsonSerializable() class APIHits
+@JsonSerializable()
+class APIHits {
+  APIRecipe recipe;
+
+  APIHits({
+    required this.recipe,
+  });
+
+  factory APIHits.fromJson(Map<String, dynamic> json) =>
+      _$APIHitsFromJson(json);
+  Map<String, dynamic> toJson() => _$APIHitsToJson(this);
+}
+
+// Adds @JsonSerializable() class APIRecipe
+@JsonSerializable()
+class APIRecipe {
+  String label;
+  String image;
+  String url;
+
+  List<APIIngredients> ingredients;
+  double calories;
+  double totalWeight;
+  double totalTime;
+  APIRecipe({
+    required this.label,
+    required this.image,
+    required this.url,
+    required this.ingredients,
+    required this.calories,
+    required this.totalWeight,
+    required this.totalTime,
+  });
+
+  factory APIRecipe.fromJson(Map<String, dynamic> json) =>
+      _$APIRecipeFromJson(json);
+  Map<String, dynamic> toJson() => _$APIRecipeToJson(this);
+}
+// TODO: Add global Helper Functions
+
 // TODO: Add @JsonSerializable() class APIIngredients
 
