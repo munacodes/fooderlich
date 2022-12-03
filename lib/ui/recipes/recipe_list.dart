@@ -5,6 +5,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../widgets/custom_dropdown.dart';
 import '../colors.dart';
 
+import 'dart:convert';
+import '../../network/recipe_model.dart';
+import 'package:flutter/services.dart';
+import '../recipe_card.dart';
+import 'recipe_details.dart';
+
 class RecipeList extends StatefulWidget {
   const RecipeList({Key? key}) : super(key: key);
 
@@ -29,12 +35,15 @@ class _RecipeListState extends State<RecipeList> {
   // This clears the way for you to save the user’s previous searches and keep track of the current search
   List<String> previousSearches = <String>[];
 
-  // TODO: Add _currentRecipes1
+  // Adds _currentRecipes1
+  APIRecipeQuery? _currentRecipes1;
 
   @override
   void initState() {
     super.initState();
-    // TODO: Call loadRecipes()
+    
+    // Calls loadRecipes()
+    loadRecipes();
 
 // Call getPreviousSearches
     getPreviousSearches();
@@ -61,7 +70,16 @@ class _RecipeListState extends State<RecipeList> {
     });
   }
 
-  // TODO: Add loadRecipes
+  // Adds loadRecipes
+  Future loadRecipes() async {
+ 
+ final jsonString = await rootBundle.loadString('assets/
+recipes1.json');
+ setState(() {
+ 
+ _currentRecipes1 =
+APIRecipeQuery.fromJson(jsonDecode(jsonString));
+ }
 
   @override
   void dispose() {
