@@ -41,7 +41,7 @@ class _RecipeListState extends State<RecipeList> {
   @override
   void initState() {
     super.initState();
-    
+
     // Calls loadRecipes()
     loadRecipes();
 
@@ -72,14 +72,11 @@ class _RecipeListState extends State<RecipeList> {
 
   // Adds loadRecipes
   Future loadRecipes() async {
- 
- final jsonString = await rootBundle.loadString('assets/
-recipes1.json');
- setState(() {
- 
- _currentRecipes1 =
-APIRecipeQuery.fromJson(jsonDecode(jsonString));
- }
+    final jsonString = await rootBundle.loadString('assets/recipes1.json');
+    setState(() {
+      _currentRecipes1 = APIRecipeQuery.fromJson(jsonDecode(jsonString));
+    });
+  }
 
   @override
   void dispose() {
@@ -245,14 +242,35 @@ APIRecipeQuery.fromJson(jsonDecode(jsonString));
 
   // TODO: Replace method
   Widget _buildRecipeLoader(BuildContext context) {
-    if (searchTextController.text.length < 3) {
+    if (_currentRecipes1 == null || _currentRecipes1?.hits == null) {
       return Container();
     }
-    // Show a loading indicator while waiting for the movies
-    return const Center(
-      child: CircularProgressIndicator(),
+    // Show a loading indicator while waiting for the recipes
+
+    return Flexible(
+      child: ListView.builder(
+        itemCount: 1,
+        itemBuilder: (BuildContext context, int index) {
+          return Center(
+              child: _buildRecipeCard(context, _currentRecipes1!.hits, 0));
+        },
+      ),
     );
   }
 
-  // TODO: Add _buildRecipeCard
+  // Adds _buildRecipeCard
+  Widget _buildRecipeCard(
+      BuildContext topLevelContext, List<APIHits> hits, int index) {
+    final recipe = hits[index].recipe;
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(topLevelContext, MaterialPageRoute(
+          builder: (context) {
+            return const RecipeDetails();
+          },
+        ));
+      },
+      child: recipeStringCard(recipe.image, recipe.label),
+    );
+  }
 }

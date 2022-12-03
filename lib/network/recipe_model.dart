@@ -6,7 +6,7 @@ class APIRecipeQuery {
   // TODO: Add APIRecipeQuery.fromJson
   factory APIRecipeQuery.fromJson(Map<String, dynamic> json) =>
       _$APIRecipeQueryFromJson(json);
-  Map<String, dynamic> toJson() => $APIRecipeQueryToJson(this);
+  Map<String, dynamic> toJson() => _$APIRecipeQueryToJson(this);
 
   // Adds a field here
   @JsonKey(name: 'q')

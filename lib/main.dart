@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooderlinch/ui/main_screen.dart';
 
 import 'fooderlich_theme.dart';
 
@@ -6,66 +7,27 @@ import 'package:provider/provider.dart';
 import 'models/models.dart';
 import 'navigation/app_router.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final appStateManager = AppStateManager();
-  appStateManager.initializeApp();
-  runApp(Fooderlich(appStateManager: appStateManager));
+  runApp(const MyApp());
 }
 
-class Fooderlich extends StatefulWidget {
-  final AppStateManager appStateManager;
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
-  const Fooderlich({super.key, required this.appStateManager});
-
-  @override
-  FooderlichState createState() => FooderlichState();
-}
-
-class FooderlichState extends State<Fooderlich> {
-  late final _groceryManager = GroceryManager();
-  late final _profileManager = ProfileManager();
-  late final _appStateManager = AppStateManager();
-
-  late final _appRouter = AppRouter(
-    widget.appStateManager,
-    _profileManager,
-    _groceryManager,
-  );
-
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => _groceryManager,
-        ),
-        ChangeNotifierProvider(
-          create: (context) => _profileManager,
-        ),
-        ChangeNotifierProvider(
-          create: (context) => widget.appStateManager,
-        ),
-      ],
-      child: Consumer<ProfileManager>(
-        builder: (context, profileManager, child) {
-          ThemeData theme;
-          if (profileManager.darkMode) {
-            theme = FooderlichTheme.dark();
-          } else {
-            theme = FooderlichTheme.light();
-          }
-
-          final router = _appRouter.router;
-          return MaterialApp.router(
-            theme: theme,
-            title: 'Fooderlich',
-            routerDelegate: router.routerDelegate,
-            routeInformationParser: router.routeInformationParser,
-            routeInformationProvider: router.routeInformationProvider,
-          );
-        },
+    return MaterialApp(
+      title: 'Recipes',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: Colors.white,
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      home: const MainScreen(),
     );
   }
 }
