@@ -67,7 +67,34 @@ class APIRecipe {
       _$APIRecipeFromJson(json);
   Map<String, dynamic> toJson() => _$APIRecipeToJson(this);
 }
-// TODO: Add global Helper Functions
 
-// TODO: Add @JsonSerializable() class APIIngredients
+// Adds a global Helper Functions
+String getCalories(double? calories) {
+  if (calories == null) {
+    return '0 KCAL';
+  }
+  return '${calories.floor()} KCAL';
+}
 
+String getWeight(double? weight) {
+  if (weight == null) {
+    return '0g';
+  }
+  return '${weight.floor()}g';
+}
+
+// Adds @JsonSerializable() class APIIngredients
+@JsonSerializable()
+class APIIngredients {
+  @JsonKey(name: 'text')
+  String name;
+  double weight;
+  APIIngredients({
+    required this.name,
+    required this.weight,
+  });
+
+  factory APIIngredients.fromJson(Map<String, dynamic> json) =>
+      _$APIIngredientsFromJson(json);
+  Map<String, dynamic> toJson() => _$APIIngredientsToJson(this);
+}
