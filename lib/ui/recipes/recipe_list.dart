@@ -311,7 +311,10 @@ the results or an error.
 currentSearchList.
 8. If you aren’t at the end of the data, set currentEndPosition to the current
 location.
-9. Return _buildRecipeList() using currentSearchList. */
+9. Return _buildRecipeList() using currentSearchList.
+10. You check that snapshot.connectionState isn’t done.
+11. If the current count is 0, show a progress indicator.
+12. Otherwise, just show the current list. */
     );
   }
 
