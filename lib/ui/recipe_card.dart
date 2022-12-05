@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import '../network/recipe_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 // TODO: Replace with new class
-Widget recipeStringCard(String image, String label) {
+
+Widget recipeCard(APIRecipe recipe) {
   return Card(
     elevation: 4.0,
     shape: RoundedRectangleBorder(
@@ -14,11 +17,11 @@ Widget recipeStringCard(String image, String label) {
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(6.0), topRight: Radius.circular(6.0)),
           // TODO: Replace with image from recipe
-          child: Image.asset(
-            'assets/images/pizza_w700.png',
-            height: 200,
-            width: 200,
-          ),
+
+          child: CachedNetworkImage(
+              imageUrl: recipe.image, height: 210, fit: BoxFit.fill),
+          /* The CachedNetworkImage package will load a network image and cache it for fast reloading.
+             You’re now using an image from the recipe. */
         ),
         const SizedBox(
           height: 12.0,
@@ -26,8 +29,8 @@ Widget recipeStringCard(String image, String label) {
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Text(
-            // TODO: Replace with label from recipe
-            label,
+            // labels from recipe
+            recipe.label,
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
@@ -36,11 +39,11 @@ Widget recipeStringCard(String image, String label) {
         const SizedBox(
           height: 8.0,
         ),
-        const Padding(
-          padding: EdgeInsets.only(left: 8.0),
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0),
           child: Text(
-            '320CAL',
-            style: TextStyle(
+            getCalories(recipe.calories),
+            style: const TextStyle(
               fontWeight: FontWeight.normal,
               fontSize: 11,
             ),
