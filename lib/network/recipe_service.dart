@@ -8,7 +8,6 @@ const String apiUrl = 'https://api.edamam.com/search';
 class RecipeService {
   Future getData(String url) async {
     final response = await get(Uri.parse(url));
-
     if (response.statusCode == 200) {
       return response.body;
     } else {
@@ -32,6 +31,7 @@ from the HTTP package. get() fetches data from the provided url.
         '$apiUrl?app_id=$apiId&app_key=$apiKey&q=$query&from=$from&to=$to');
     return recipeData;
   }
+
   /** In this code, you:
 1. Create a new method, getRecipes(), with the parameters query, from and to.
 These let you get specific pages from the complete query. from starts at 0 and to

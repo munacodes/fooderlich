@@ -21,10 +21,10 @@ class RecipeList extends StatefulWidget {
 
 class _RecipeListState extends State<RecipeList> {
   static const String prefSearchKey = 'previousSearches';
+
   late TextEditingController searchTextController;
   final ScrollController _scrollController = ScrollController();
   List<APIHits> currentSearchList = [];
-
   int currentCount = 0;
   int currentStartPosition = 0;
   int currentEndPosition = 20;
@@ -71,9 +71,7 @@ class _RecipeListState extends State<RecipeList> {
   // Adds loadRecipes
   Future<APIRecipeQuery> getRecipeData(String query, int from, int to) async {
     final recipeJson = await RecipeService().getRecipes(query, from, to);
-
     final recipeMap = json.decode(recipeJson);
-
     return APIRecipeQuery.fromJson(recipeMap);
 
     /* Here’s what this does:
@@ -97,7 +95,6 @@ an APIRecipeQuery model. */
   // savePreviousSearches
   void savePreviousSearches() async {
     final prefs = await SharedPreferences.getInstance();
-
     prefs.setStringList(prefSearchKey, previousSearches);
   }
 // Here, you use the async keyword to indicate that this method will run
@@ -108,10 +105,8 @@ an APIRecipeQuery model. */
 // Adds getPreviousSearches
   void getPreviousSearches() async {
     final prefs = await SharedPreferences.getInstance();
-
     if (prefs.containsKey(prefSearchKey)) {
       final searches = prefs.getStringList(prefSearchKey);
-
       if (searches != null) {
         previousSearches = searches;
       } else {
@@ -154,7 +149,6 @@ an APIRecipeQuery model. */
               icon: const Icon(Icons.search),
               onPressed: () {
                 startSearch(searchTextController.text);
-
                 final currentFocus = FocusScope.of(context);
                 if (!currentFocus.hasPrimaryFocus) {
                   currentFocus.unfocus();
@@ -172,17 +166,16 @@ an APIRecipeQuery model. */
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: TextField(
-                      decoration: const InputDecoration(
-                          border: InputBorder.none, hintText: 'Search'),
-                      autofocus: false,
-                      textInputAction: TextInputAction.done,
-                      onSubmitted: (value) {
-                        startSearch(searchTextController.text);
-                      },
-                      controller: searchTextController,
-                    ),
-                  ),
+                      child: TextField(
+                    decoration: const InputDecoration(
+                        border: InputBorder.none, hintText: 'Search'),
+                    autofocus: false,
+                    textInputAction: TextInputAction.done,
+                    onSubmitted: (value) {
+                      startSearch(searchTextController.text);
+                    },
+                    controller: searchTextController,
+                  )),
                   PopupMenuButton<String>(
                     icon: const Icon(
                       Icons.arrow_drop_down,
@@ -235,10 +228,8 @@ an APIRecipeQuery model. */
       currentStartPosition = 0;
       hasMore = true;
       value = value.trim();
-
       if (!previousSearches.contains(value)) {
         previousSearches.add(value);
-
         savePreviousSearches();
       }
     });

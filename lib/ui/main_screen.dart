@@ -22,6 +22,7 @@ class _MainScreenState extends State<MainScreen> {
 
   // index key
   static const String prefSelectedIndexKey = 'selectedIndex';
+
 // That is the constant you will use for the selected index preference key.
   @override
   void initState() {
@@ -37,7 +38,6 @@ class _MainScreenState extends State<MainScreen> {
   // SaveCurrentIndex
   void saveCurrentIndex() async {
     final prefs = await SharedPreferences.getInstance();
-
     prefs.setInt(prefSelectedIndexKey, _selectedIndex);
   }
 // Here, you:
@@ -47,7 +47,6 @@ class _MainScreenState extends State<MainScreen> {
   // GetCurrentIndex
   void getCurrentIndex() async {
     final prefs = await SharedPreferences.getInstance();
-
     if (prefs.containsKey(prefSelectedIndexKey)) {
       setState(() {
         final index = prefs.getInt(prefSelectedIndexKey);

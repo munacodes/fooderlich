@@ -6,6 +6,7 @@ class APIRecipeQuery {
   // TODO: Add APIRecipeQuery.fromJson
   factory APIRecipeQuery.fromJson(Map<String, dynamic> json) =>
       _$APIRecipeQueryFromJson(json);
+
   Map<String, dynamic> toJson() => _$APIRecipeQueryToJson(this);
 
   // Adds a field here
@@ -39,6 +40,7 @@ class APIHits {
 
   factory APIHits.fromJson(Map<String, dynamic> json) =>
       _$APIHitsFromJson(json);
+
   Map<String, dynamic> toJson() => _$APIHitsToJson(this);
 }
 
@@ -48,11 +50,11 @@ class APIRecipe {
   String label;
   String image;
   String url;
-
   List<APIIngredients> ingredients;
   double calories;
   double totalWeight;
   double totalTime;
+
   APIRecipe({
     required this.label,
     required this.image,
@@ -65,6 +67,7 @@ class APIRecipe {
 
   factory APIRecipe.fromJson(Map<String, dynamic> json) =>
       _$APIRecipeFromJson(json);
+
   Map<String, dynamic> toJson() => _$APIRecipeToJson(this);
 }
 
@@ -89,6 +92,7 @@ class APIIngredients {
   @JsonKey(name: 'text')
   String name;
   double weight;
+
   APIIngredients({
     required this.name,
     required this.weight,
@@ -96,5 +100,6 @@ class APIIngredients {
 
   factory APIIngredients.fromJson(Map<String, dynamic> json) =>
       _$APIIngredientsFromJson(json);
+
   Map<String, dynamic> toJson() => _$APIIngredientsToJson(this);
 }

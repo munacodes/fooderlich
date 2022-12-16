@@ -19,7 +19,7 @@ class RecipeDetails extends StatelessWidget {
                 Stack(
                   children: [
                     Align(
-                      alignment: Alignment.topLeft,
+                      alignment: Alignment.topCenter,
                       // TODO 1
                       child: Image.asset(
                         'assets/images/pizza_w700.png',
@@ -65,6 +65,7 @@ class RecipeDetails extends StatelessWidget {
                 Center(
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16.0)),
                     ),

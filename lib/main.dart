@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fooderlinch/ui/main_screen.dart';
 
-import 'fooderlich_theme.dart';
-
-import 'package:provider/provider.dart';
-import 'models/models.dart';
-import 'navigation/app_router.dart';
+import 'ui/main_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
