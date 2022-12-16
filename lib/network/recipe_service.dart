@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:http/http.dart';
 
 const String apiKey = 'a757e31278eadd92b295883441101100';
-const String apiId = 'a757e31278eadd92b295883441101100';
+const String apiId = '4abc352a';
 const String apiUrl = 'https://api.edamam.com/search';
 
 class RecipeService {

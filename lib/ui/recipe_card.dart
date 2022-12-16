@@ -14,15 +14,15 @@ Widget recipeCard(APIRecipe recipe) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         ClipRRect(
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(6.0), topRight: Radius.circular(6.0)),
-          // TODO: Replace with image from recipe
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(6.0), topRight: Radius.circular(6.0)),
+            // TODO: Replace with image from recipe
 
-          child: CachedNetworkImage(
-              imageUrl: recipe.image, height: 210, fit: BoxFit.fill),
-          /* The CachedNetworkImage package will load a network image and cache it for fast reloading.
+            child: CachedNetworkImage(
+                imageUrl: recipe.image, height: 210, fit: BoxFit.fill)
+            /* The CachedNetworkImage package will load a network image and cache it for fast reloading.
              You’re now using an image from the recipe. */
-        ),
+            ),
         const SizedBox(
           height: 12.0,
         ),

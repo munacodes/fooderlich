@@ -52,6 +52,9 @@ dependencies:
   json_annotation: ^4.7.0
   fluttericon: ^2.0.0
   http: ^0.13.5
+  chopper: ^6.0.0
+  logging: ^1.1.0
+  chopper_generator: ^6.0.0
  
 
 dev_dependencies:
