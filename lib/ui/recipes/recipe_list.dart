@@ -1,16 +1,17 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../widgets/custom_dropdown.dart';
 import '../colors.dart';
-
 import 'dart:convert';
 import '../../network/recipe_model.dart';
 import 'package:flutter/services.dart';
 import '../recipe_card.dart';
 import 'recipe_details.dart';
 import '../../network/recipe_service.dart';
+import '../../data/models/models.dart';
+import '../../mock_service/mock_service.dart';
+import 'package:provider/provider.dart';
 
 class RecipeList extends StatefulWidget {
   const RecipeList({Key? key}) : super(key: key);
@@ -354,7 +355,16 @@ hits[index].recipe. */
       onTap: () {
         Navigator.push(topLevelContext, MaterialPageRoute(
           builder: (context) {
-            return const RecipeDetails();
+            final detailRecipe = Recipe(
+              label: recipe.label,
+              image: recipe.image,
+              url: recipe.url,
+              calories: recipe.calories,
+              totalTime: recipe.totalTime,
+              totalWeight: recipe.totalWeight,
+            );
+            detailRecipe.ingredients = convertIngredients(recipe.ingredients);
+            return RecipeDetails(recipe: detailRecipe);
           },
         ));
       },
