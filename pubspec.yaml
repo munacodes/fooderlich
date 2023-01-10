@@ -55,6 +55,7 @@ dependencies:
   chopper: ^6.0.0
   logging: ^1.1.0
   chopper_generator: ^6.0.0
+  equatable: ^2.0.5
  
 
 dev_dependencies:
